@@ -1,0 +1,101 @@
+footer{
+    background-color: #010513;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    padding: 20px;
+    margin-top: 70px;
+}
+
+footer section{
+    width: 230px;
+    height: auto;
+    position: relative;
+}
+
+section h1{
+    color: #fff;
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+section h2{
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+section p{
+    color: #808080;
+    font-size: 15px;
+}
+
+section a{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    color: #b1b1b1;
+    padding: 3px 0px;
+    transition: 0.4s linear;
+    position: relative;
+
+}
+
+
+section .active{
+    color: #0f3bdb;
+}
+
+
+section .contact{
+    color: #0f3bdb;
+    display: flex;
+    align-items: center;
+    column-gap: 0.8rem;
+}
+
+section .email{
+    color: #b1b1b1;
+    display: flex;
+    align-items: center;
+    column-gap: 0.8rem;
+    margin: 8px 0px;
+}
+
+section .location{
+    color: #b1b1b1;
+    column-gap: 0.8rem;
+    margin: 10px 0px;
+    font-size: 18px;
+}
+
+
+.sm-footer{
+    height: 50px;
+    background-color: #010513;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #363636;
+}
+
+.sm-footer p{
+    color:#b1b1b1;
+}
+
+
+@media(max-width:350px){
+    section h2{
+        color: #fff;
+        font-size: 17px;
+        font-weight: 500;
+        margin: 10px 0px;
+    }
+    .sm-footer p{
+        font-size: 12px;
+    }
+}

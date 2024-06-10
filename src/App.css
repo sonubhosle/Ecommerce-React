@@ -1,0 +1,97 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
+
+html,body{
+  font-family: 'Roboto',sans-serif;
+  background: #fafafa;
+}
+
+.carousel{
+  width: 100%;
+  height: 20px;
+  position: relative;
+}
+
+.carousel .img{
+  width: 100%;
+  height: 10%;
+}
+
+
+.slider-section{
+  width: 100%;
+  margin: 10px auto 0px auto;
+  padding: 15px 10px;
+  height: auto;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  /* border: 1px solid #eeeeee; */
+  border-radius: 4px;
+  position: relative;
+  
+}
+
+.button-group{
+  width: 95%;
+  height: auto;
+  margin: 0px auto;
+  background-color: transparent;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 88;
+  position: absolute;
+  right: 50px;
+}
+
+
+ .prev-btn{
+  position: absolute;
+  background-color: #fff;
+  height: 40px;
+  width: 40px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.042) 0px 0px 8px 0px;
+  border: 1px solid #eeeeee;
+  z-index: 9;
+  right: 50px;
+  top: -370px
+ }
+ .next-btn{
+  position: absolute;
+  background-color: #fff;
+  height: 40px;
+  width: 40px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.042) 0px 0px 8px 0px;
+  right: 0;
+  border: 1px solid #eeeeee;
+  z-index:  9 ;
+  top: -370px
+
+ }
+
+.z-index{
+  z-index: 999;
+}
+
+
+/* App.css */
+
+.box-shadow{
+  box-shadow: rgba(0, 0, 0, 0.042) 0px 0px 10px 0px;
+  transition: all 0.5s linear;
+}
+
+.box-shadow:hover{
+  box-shadow: rgba(0, 0, 0, 0.116) 0px 0px 15px 0px;
+
+}
+
+.border-radius{
+  border-radius: 3px;
+}
+
+.border-light{
+  border: 1px solid #f3f3f3;
+}

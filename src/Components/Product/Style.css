@@ -1,0 +1,23 @@
+.productCard{
+    box-shadow: rgba(0, 0, 0, 0.053) 0px 0px 10px 0px;
+    border-radius: 4px;
+    padding: 5px;
+    border: 1px solid #eeeeee;
+    transition: all .5s ease;
+    width: 200px;
+}
+
+
+
+.productCard .textPart{
+  transition:transform .3s ease-out;
+
+}
+
+.productCard:hover .textPart{
+   transform: translateY(-1rem);
+}
+
+.productCard:hover{
+    box-shadow: rgba(0, 0, 0, 0.133) 0px 0px 10px 0px;
+}

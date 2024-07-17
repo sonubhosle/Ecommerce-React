@@ -9,6 +9,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import AuthModal from '../../Auth/AuthModal'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser, logout } from '../../State/Auth/Action'
+import { getCart } from '../../State/Cart/Action'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -16,15 +17,14 @@ function classNames(...classes) {
 
 
 const Navigation = () => {
-
   const [open, setOpen] = useState(false)
   const [openAuthModel, setAuthModel] = useState(false)
   const [anchorEl, setAnchorEl] = useState(null)
   const openUserMenu = Boolean(anchorEl);
   const navigate = useNavigate();
-
   const jwt = localStorage.getItem("jwt");
   const { auth } = useSelector(store => store);
+  const { cart } = useSelector(store => store)
   const dispatch = useDispatch()
 
   const location = useLocation();
@@ -46,6 +46,10 @@ const Navigation = () => {
     setAuthModel(false);
   }
 
+  const handleCart = () => {
+    navigate('/cart')
+  }
+
   const handleCategoryClick = (category, section, item, close) => {
     navigate(`/${category.id}/${section.id}/${item.id}`);
     close();
@@ -57,7 +61,9 @@ const Navigation = () => {
   useEffect(() => {
     if (jwt) {
       dispatch(getUser(jwt));
+
     }
+    
   }, [jwt, auth.jwt])
 
   useEffect(() => {
@@ -68,7 +74,7 @@ const Navigation = () => {
     if(location.pathname === "/login" || location.pathname==='/signup'){
       navigate(-1)
     }
-    
+    dispatch(getCart())
   
   }, [auth.user])
 
@@ -359,14 +365,14 @@ const Navigation = () => {
 
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 flex items-center p-2">
+                  <div onClick={handleCart} className="group -m-2 flex items-center p-2 cursor-pointer">
                     <ShoppingBagIcon
                       className="h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
+                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">{cart.cart?.cartItems.length}</span>
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>

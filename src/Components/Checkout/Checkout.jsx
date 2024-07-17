@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography';
 import { useLocation } from 'react-router-dom';
 import DeliveryAddress from './DeliveryAddress';
 import OrderSummmery from './OrderSummmery';
+import AddressCard from '../AddressCard/AddressCard';
 
 const steps = ['Login', 'Delivery Address', 'Order Summery', 'Payment'];
 
@@ -36,7 +37,6 @@ const Checkout = () => {
   return (
     <div className='bg-white rounded-md p-5'>
       <h2 className='text-2xl font-bold pb-8 '>Checkout</h2>
-
       <Box sx={{ width: '100%' }}>
         <Stepper activeStep={step}>
           {steps.map((label, index) => {

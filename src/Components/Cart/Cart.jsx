@@ -11,7 +11,6 @@ const Cart = () => {
     const dispath = useDispatch()
 
     const { cart } = useSelector(store => store)
-      console.log(cart)
     const handleCheckout = () => {
         navigate('/checkout?step=2')
     }

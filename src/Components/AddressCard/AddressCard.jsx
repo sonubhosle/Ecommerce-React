@@ -1,7 +1,7 @@
+import { Button } from '@mui/material'
 import React from 'react'
 
 const AddressCard = ({ address }) => {
-  console.log(address)
   return (
     <div>
       <div className='space-y-1'>
@@ -14,7 +14,9 @@ const AddressCard = ({ address }) => {
           <p>Phone Number</p>
           <p>{address?.mobile}</p>
         </div>
-
+        <Button type='submit' variant='contained' sx={{ px: '2rem', py: '.7rem', bgcolor: "#9155fd" }} >
+                    Deliver Here
+                  </Button>
       </div>
     </div>
   )

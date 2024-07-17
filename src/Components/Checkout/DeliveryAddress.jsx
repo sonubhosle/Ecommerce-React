@@ -1,7 +1,7 @@
 import { Box, Button, Grid, TextField } from '@mui/material'
 import React from 'react'
 import AddressCard from '../AddressCard/AddressCard'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createOrder } from '../../State/Orders/Action'
 import { useNavigate } from 'react-router-dom'
 
@@ -9,6 +9,7 @@ const DeliveryAddress = () => {
 
   const disptch = useDispatch()
   const navigate = useNavigate()
+ const {auth} = useSelector(store => store)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,15 +32,8 @@ const DeliveryAddress = () => {
   return (
     <div className='px-5   lg:px-10'>
       <Grid container spacing={4}>
-        <Grid xs={12} lg={5} item className='border border-0-md shadow-md h-[30.5rem] overflow-y-scroll' >
-          <div className="p-2 py-1 border-b cursor-pointer">
-            <AddressCard />
-            <Button variant='contained' sx={{ px: '2rem', py: '.7rem', mt: "2rem", bgcolor: "#9155fd" }} >
-              Deliver Here
-            </Button>
-          </div>
-        </Grid>
-        <Grid item xs={12} lg={7}>
+     {auth.user?.address.map((item)=>   <AddressCard address={item} />)} 
+        <Grid item xs={12} lg={12}>
           <Box className="border border-0-md shadow-md p-5">
             <form onSubmit={handleSubmit}>
               <Grid container spacing={3}>

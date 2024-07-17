@@ -1,46 +1,68 @@
 
-import { Grid } from '@mui/material'
-import React from 'react'
+import { deleteOrder } from '../../State/Orders/Action';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom'
 import AdjustIcon from '@mui/icons-material/Adjust';
-import { useNavigate } from 'react-router-dom';
-const OrderCard = () => {
 
+const OrderCard = ({ order }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const handleOrderClick = (orderId) => {
+    navigate(`/account/order/${orderId}`);
+  };
+  const handleDeleteClick = (orderId) => {
+    dispatch(deleteOrder(orderId));
+  };
+
+
   return (
-    <div onClick={() => navigate(`/account/order/${5}`)} className='ml-5 mb-3 shadow-lg p-3 border '>
-      <Grid container spacing={2} sx={{ justifyContent: 'space-between' }}>
-        <Grid item sx={6}>
-          <div className='flex cursor-pointer'>
-            <img className='w-[5rem] h-[5rem] object-cover object-top' src="https://rukminim1.flixcart.com/image/612/612/l5h2xe80/kurta/x/6/n/xl-kast-tile-green-majestic-man-original-imagg4z33hu4kzpv.jpeg?q=70" alt="" />
-            <div className="ml-5 space-y-2">
-              <p className=''>Men Printed Pure Cotton Straight Kurta</p>
-              <p className='opacity-50 text-xs font-semibold'> Size: M</p>
-              <p className='opacity-50 text-xs font-semibold'>Color : Black</p>
-            </div>
-          </div>
-        </Grid>
-        <Grid item sx={2}>
-          <p>₹1499</p>
-        </Grid>
+    <div className='order_card' >
 
-        <Grid item sx={4}>
-          {true &&
-            <div>
-              <p><AdjustIcon sx={{width:'15px',height:'15px'}} className='text-green-600 mr-2 text-sm'/>
-              <span>Delivered On March 03</span>
-              </p>
-              <p className='text-xs'>You item has been delivered</p>
-            </div>
-              
-          }
-          {
-            false && <p><span>Expected Delivered On March 03</span></p>
-          }
+      {
+        order.orderItems.map((orderItem) => {
+          return (
+            <div className='order_items'>
+              <img src={orderItem.product.imageUrl} alt="" />
+              <div className="product_info" >
 
-        </Grid>
-      </Grid>
+                <div className="font-semibold text-sm text-gray-600 pt-1 pb-1">{orderItem.product.brand}</div>
+                <div className="name" onClick={() => handleOrderClick(order._id)}>{orderItem.product.title}</div>
+                <div className="flex items-center gap-4">
+                  <div className='text-[14px] flex items-center gap-1'>Size: {orderItem.size}</div>
+                  <div className='text-[14px] flex items-center gap-1'>Color: {orderItem.product.color}</div>
+                </div>
+                <div className='text-[17px] flex  items-center gap-1 pt-2 font-semibold text-sm text-indigo-600' >₹{orderItem.product.price}</div>
+                <div className="absolute flex gap-4 bottom-3 right-3">
+                <button className= 'rounded-sm text-[14px] bg-indigo-700 text-white pt-1 pb-1 pl-3 pr-3' onClick={() => handleOrderClick(order._id)} >View</button>
+                  <button className='rounded-sm  text-[14px] bg-pink-700 text-white pt-1 pb-1 pl-3 pr-3' onClick={() => handleDeleteClick(order._id)} >Delete</button>
+                </div>
+              </div>
+              <div className='delivery_status '>
+                
+              {order.orderStatus === 'PENDING' ? (
+            <p>
+              <AdjustIcon sx={{ width: '15px', height: '15px' }} className='text-green-600 mr-2 text-sm' />
+              <span>Expected Delivery: {new Date(order.orderDate).toLocaleDateString()}</span>
+            </p>
+          ) : (
+            <p>
+              <AdjustIcon sx={{ width: '15px', height: '15px' }} className='text-green-600 mr-2 text-sm' />
+              <span>Delivered On: {new Date(order.orderDate).toLocaleDateString()}</span>
+            </p>
+          )}
+          <p className='text-xs'>You item has been {order.orderStatus === 'PENDING' ? 'ordered' : 'delivered'}</p>
+
+                
+                </div>
+            </div>
+          )
+        })
+      }
+
+
     </div>
+
   )
 }
 

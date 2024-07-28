@@ -44,7 +44,7 @@ const Payment_Success = () => {
       <TrackOrders activeStep={1} />
           <div className="order_card">
             {
-              order.order.orderItems.map((order,index) =>{
+              order.order.orderItems?.map((order,index) =>{
                 return(
                   <div className="order">
                     <img src={order.product.imageUrl} alt="" />
